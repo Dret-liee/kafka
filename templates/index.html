@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Costumer Records</title>
+</head>
+<body>
+    <h1>Costumer Records</h1>
+    
+    <h2>Add New Costumer</h2>
+    <form method="post" action="/create">
+        <input type="text" name="fname" placeholder="Name" required>
+        <input type="text" name="city" placeholder="City" required>
+        <input type="text" name="country" placeholder="Country" required>
+        <button type="submit">Add Costumer</button>
+    </form>
+
+    <h2>Costumer List</h2>
+    <ul>
+        {% for row in data %}
+            <li>
+                ID: {{ row[0] }} - Fname: {{ row[1] }} - City: {{ row[2] }} - Country: {{ row[3] }}
+                <form method="post" action="/update/{{ row[0] }}">
+                    <input type="text" name="fname" placeholder="New Fname" required>
+                    <input type="text" name="city" placeholder="New City" required>
+                    <input type="text" name="country" placeholder="New Country" required>
+                    <button type="submit">Update</button>
+                </form>
+                <form method="post" action="/delete/{{ row[0] }}">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
